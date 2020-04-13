@@ -49,6 +49,7 @@ class DataArchiveHandler(object):
             # into one big one
             dataframes = []
             for c in self.archive_contents:
+                print 'extracting %s' % c
                 extract = self._zipfile.extract(c, self._tempdir)
                 dataframes.append(pd.read_csv(extract, converters={'mtime': dateutil.parser.parse}))
                 os.remove(extract)
